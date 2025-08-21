@@ -1,0 +1,60 @@
+<!doctype html>
+<span><span class="label">WhatsApp</span><span class="hint">+1 (555) 123‑4567</span></span>
+</a>
+<!-- WordPress -->
+<a class="card" target="_blank" rel="noopener" onclick="track('social_click',{platform:'WordPress'})" href="https://YOUR-SITE.wordpress.com/">
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.48 2 12s4.5 10 10 10 10-4.48 10-10S17.5 2 12 2Zm0 2c4.42 0 8 3.58 8 8 0 3.06-1.72 5.71-4.23 7.06l2.35-6.82c.44-1.2.58-1.94.58-2.72 0-1.1-.4-2.1-1.16-2.7-.3-.24-.7-.4-1.1-.4-.24 0-.46.05-.63.09.4.62.65 1.38.65 2.19 0 .96-.36 2.05-.76 3.31l-1 3.08-2.2-6.57c.38-.06.7-.1.7-.1.33-.04.29-.53-.04-.51 0 0-1.02.08-1.67.08-.61 0-1.63-.08-1.63-.08-.33-.02-.37.49-.04.51 0 0 .32.04.66.1l.99 2.7-1.39 4.18L7.3 9.75c-.44-1.25-.82-2.3-.82-3.13 0-.81.31-1.55.87-2.08.49-.46 1.17-.72 1.87-.72.68 0 1.33.25 1.83.7.57.5.94 1.2.94 2.04 0 .86-.33 1.88-.76 3.26l-.33 1.06-1.13-3.37C7.9 6.08 9.9 4 12.5 4Z"/></svg>
+<span><span class="label">WordPress</span><span class="hint">your-site.wordpress.com</span></span>
+</a>
+<!-- Bitly -->
+<a class="card" target="_blank" rel="noopener" onclick="track('social_click',{platform:'Bitly'})" href="https://bitly.com/u/YOUR_USERNAME">
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 7h10a5 5 0 0 1 5 5v5a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5v-5a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v5a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-5a3 3 0 0 0-3-3H7Zm1 2h6a1 1 0 1 1 0 2H8a1 1 0 1 1 0-2Zm8 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"/></svg>
+<span><span class="label">Bitly</span><span class="hint">bitly.com/u/YOUR_USERNAME</span></span>
+</a>
+</div>
+</section>
+
+
+<section id="join" class="container section" aria-label="Join our list">
+<h2 style="margin:6px 0 10px">Join our list</h2>
+<p style="margin:0 0 12px; color:var(--muted)">Get updates, resources, and offers. We send concise, useful emails.</p>
+<!-- Replace YOUR_FORM_ID with your public Google Form ID -->
+<iframe class="gform" src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" allow="clipboard-write; encrypted-media"></iframe>
+</section>
+</main>
+
+
+<footer>
+<div class="container">© <span id="year"></span> Your Brand · Built on Cloudflare Pages (Free)</div>
+</footer>
+
+
+<script>
+// Zaraz shim: Cloudflare injects the real script when enabled in dashboard
+window.zaraz = window.zaraz || { q: [], track: function(e,p){this.q.push({event:e,params:p})} };
+function track(name, params){ try{ window.zaraz.track(name, params||{}); }catch(e){} }
+
+
+// Utilities
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+
+// Adaptive Google Form height for any device
+function sizeForm(){
+const f = document.querySelector('iframe.gform');
+if(!f) return;
+const h = Math.max(480, Math.min(920, Math.round(window.innerHeight * 0.82)));
+f.style.height = h + 'px';
+}
+window.addEventListener('resize', sizeForm);
+window.addEventListener('orientationchange', sizeForm);
+document.addEventListener('DOMContentLoaded', sizeForm);
+
+
+// Track when form loads
+const form = document.querySelector('iframe.gform');
+if(form){ form.addEventListener('load', () => track('form_loaded')); }
+</script>
+</body>
+</html>
